@@ -1,6 +1,6 @@
 {
 	// change this one for slower background change
-	const updateInterval= 1 *60 // in seconds
+	const updateInterval= 10 *60 // in seconds
 
 
 	const path= "/local/HASlideshow/backgrounds/"
@@ -90,14 +90,20 @@
 		})
 	}
 
-	checkNumber(0, function (exists) {
-		if (exists)
-			recur(2,1)
-		else
-			info("No local images found in www/HASlideshow/backgrounds, showing random picsum images")
-
+	// entry point
+	if (window.location.search.indexOf("force_picsum") > 0 ) {
 		bs_schedule(5000) // first update
-	})
+		info("Using picsum images.")
+	}
+	else
+		checkNumber(0, function (exists) {
+			if (exists)
+				recur(2,1)
+			else
+				info("No local images found in www/HASlideshow/backgrounds, showing random picsum images")
+
+			bs_schedule(5000) // first update
+		})
  
 	function bs_setBackgroundImage(url) {
 		bs_getBackgroundElement().setAttribute("style",'--lovelace-background:center / cover no-repeat fixed url("'+ url + '");')

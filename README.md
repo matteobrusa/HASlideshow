@@ -41,6 +41,7 @@ Double tap anywhere on the screen to skip to the next image.
 ...
 ```
 Make sure that the numerical sequence has no gaps.
+You can force the script to use picsum images and ignore the local images by appending `&force_picsum` to the URL
 
 
 # Troubleshooting
